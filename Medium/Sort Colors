@@ -1,0 +1,15 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int[] copy = new int[nums.length];
+
+        for(int i=0;i<nums.length;i++)
+        {
+            copy[i]=nums[i];
+        }
+        Arrays.sort(copy);
+        for(int i=0;i<nums.length;i++)
+        {
+            nums[i]=copy[i];
+        }
+    }
+}
