@@ -1,0 +1,18 @@
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        Map<Integer,Integer> freq = new HashMap<>();
+        for(int i : nums)
+        {
+            freq.put(i,freq.getOrDefault(i,0)+1);
+        }
+
+        for(Map.Entry<Integer,Integer> a : freq.entrySet())
+        {
+            if(a.getValue()==1)
+            {
+                return a.getKey();
+            }
+        }
+        return nums[0];
+    }
+}
