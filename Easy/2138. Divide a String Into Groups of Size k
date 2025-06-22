@@ -1,0 +1,23 @@
+class Solution {
+    public String[] divideString(String s, int k, char fill) {
+        String[] res= new String[s.length()];
+        int n=s.length();
+        if(n%k!=0)
+        {
+            int rem=n%k;
+            int t=k-rem;
+            while(t-->0)
+            {
+                s+=fill;
+            }
+        }
+        int j=0,i;
+        for( i=0;i<s.length();i+=k)
+        {
+            if(i+k-1 < s.length())
+                res[j++]=s.substring(i,i+k);
+        }
+        
+        return Arrays.copyOfRange(res,0,j);
+    }
+}
