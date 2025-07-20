@@ -1,0 +1,25 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n=nums.length;
+        int[] ans=new int[n];
+        int c=0;
+        for(int i=0;i<n;i++)
+        {
+            boolean flag=false;
+            int e=0;
+            for(int j=1;j<n;j++)
+            { 
+                int ind=(i+j)%n;
+                if(nums[ind]>nums[i])
+                {
+                    ans[c++]=nums[ind];
+                    e=1;
+                    break;
+                }
+            }
+            if(e==0)
+                ans[c++]=-1;
+        }
+        return ans;
+    }
+}
