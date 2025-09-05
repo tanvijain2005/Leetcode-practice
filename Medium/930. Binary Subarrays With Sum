@@ -1,0 +1,44 @@
+class Solution {
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int sum=0,c=0;
+
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=0;
+            for(int j=i;j<nums.length;j++)
+            {
+                sum+=nums[j];
+                if(sum==goal)
+                {
+                    c++;
+                }
+                if(sum>goal)
+                {
+                    sum=0;
+                    break;
+                }
+            }
+        }
+        return c;
+
+        //method 2
+        /*int cursum=0,tc=0;
+        Map<Integer,Integer> freq = new HashMap<>();
+
+        for(int i=0;i<nums.length;i++)
+        {
+            cursum+=nums[i];
+            if(cursum==goal)
+            {
+                tc++;
+            }
+
+            if(freq.containsKey(cursum-goal))
+                tc+=freq.get(cursum-goal);
+
+            freq.put(cursum,freq.getOrDefault(cursum,0)+1);
+            
+        }
+        return tc;*/
+    }
+}
