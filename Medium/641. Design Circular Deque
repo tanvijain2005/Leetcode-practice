@@ -1,0 +1,113 @@
+class MyCircularDeque {
+    int[] q;
+    int f,r,cap,size;
+
+    public MyCircularDeque(int k) {
+        q=new int[k];
+        Arrays.fill(q,-1);
+        size=0;
+        cap=k;
+        f=r=0;
+    }
+    
+    public boolean insertFront(int value) {
+        if(isFull())
+        {
+            return false;
+        }
+        
+        if(f==0)    f=cap-1;
+        else        f--;
+
+        //f=(f-1+cap)%cap;
+
+        q[f]=value;
+        size++;
+        return true;
+    }
+    
+    public boolean insertLast(int value) {
+       if(isFull())
+        {
+            return false;
+        }
+
+        q[r]=value;
+        if(r==cap-1)    r=0;
+        else            r++;
+
+        //b=(b+1)%cap;
+        size++;
+        return true;
+    }
+    
+    public boolean deleteFront() {
+        if(isEmpty())
+        {
+            return false;
+        }
+
+        q[f]=-1;
+        if(f==cap-1)    f=0;
+        else            f++;
+
+        //f=(f+1)%cap;
+
+        size--;
+        return true;
+    }
+    
+    public boolean deleteLast() {
+        if(isEmpty())
+        {
+            return false;
+        }
+
+        
+        if(r==0)    r=cap-1;
+        else        r--;
+
+        q[r]=-1;
+        size--;
+        return true;
+    }
+    
+    public int getFront() {
+        if(isEmpty())
+        {
+            return -1;
+        }
+        return q[f];
+    }
+    
+    public int getRear() {
+        if(isEmpty())
+        {
+            return -1;
+        }
+        if(r==0)    return q[cap-1];
+        else        return q[r-1];
+        
+    }
+    
+    public boolean isEmpty() {
+        return size==0;
+    }
+    
+    public boolean isFull() {
+        return size==cap;
+    }
+}
+
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * MyCircularDeque obj = new MyCircularDeque(k);
+ * boolean param_1 = obj.insertFront(value);
+ * boolean param_2 = obj.insertLast(value);
+ * boolean param_3 = obj.deleteFront();
+ * boolean param_4 = obj.deleteLast();
+ * int param_5 = obj.getFront();
+ * int param_6 = obj.getRear();
+ * boolean param_7 = obj.isEmpty();
+ * boolean param_8 = obj.isFull();
+ */
